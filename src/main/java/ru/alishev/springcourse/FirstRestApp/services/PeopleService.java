@@ -37,13 +37,8 @@ public class PeopleService {
         return foundPerson.orElseThrow(PersonNotFoundException::new);
     }
 
-    @ExceptionHandler
-    private ResponseEntity<PersonErrorResponse> handleException(PersonNotFoundException e) {
-        PersonErrorResponse response = new PersonErrorResponse(
-                "Person with this id wasn't found!",
-                System.currentTimeMillis()
-        );
-
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    @Transactional
+    public void save(Person person) {
+        peopleRepository.save(person);
     }
 }
