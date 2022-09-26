@@ -1,12 +1,12 @@
-package ru.alishev.springcourse.FirstRestApp.services;
+package ru.gorodovikov.MeasurementsApp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.alishev.springcourse.FirstRestApp.models.Measurement;
-import ru.alishev.springcourse.FirstRestApp.models.Sensor;
-import ru.alishev.springcourse.FirstRestApp.repositories.MeasurementsRepository;
-import ru.alishev.springcourse.FirstRestApp.util.SensorException;
+import ru.gorodovikov.MeasurementsApp.models.Measurement;
+import ru.gorodovikov.MeasurementsApp.models.Sensor;
+import ru.gorodovikov.MeasurementsApp.repositories.MeasurementsRepository;
+import ru.gorodovikov.MeasurementsApp.util.SensorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class MeasurementsService {
         if (sensor.isPresent()){
             measurement.setSensor(sensor.get());
         } else {
-            throw new SensorException("Сенсор не найден");
+            throw new SensorException("Sensor does not found");
         }
     }
 }

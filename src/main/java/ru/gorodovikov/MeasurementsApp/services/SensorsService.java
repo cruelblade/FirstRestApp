@@ -1,10 +1,10 @@
-package ru.alishev.springcourse.FirstRestApp.services;
+package ru.gorodovikov.MeasurementsApp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.alishev.springcourse.FirstRestApp.models.Sensor;
-import ru.alishev.springcourse.FirstRestApp.repositories.SensorsRepository;
+import ru.gorodovikov.MeasurementsApp.models.Sensor;
+import ru.gorodovikov.MeasurementsApp.repositories.SensorsRepository;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,22 +1,19 @@
-package ru.alishev.springcourse.FirstRestApp.controllers;
+package ru.gorodovikov.MeasurementsApp.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import ru.alishev.springcourse.FirstRestApp.dto.MeasurementDTO;
-import ru.alishev.springcourse.FirstRestApp.dto.MeasurementResponse;
-import ru.alishev.springcourse.FirstRestApp.models.Measurement;
-import ru.alishev.springcourse.FirstRestApp.services.MeasurementsService;
-import ru.alishev.springcourse.FirstRestApp.util.ErrorsUtil;
-import ru.alishev.springcourse.FirstRestApp.util.SensorErrorResponse;
-import ru.alishev.springcourse.FirstRestApp.util.SensorException;
+import ru.gorodovikov.MeasurementsApp.dto.MeasurementDTO;
+import ru.gorodovikov.MeasurementsApp.dto.MeasurementResponse;
+import ru.gorodovikov.MeasurementsApp.models.Measurement;
+import ru.gorodovikov.MeasurementsApp.services.MeasurementsService;
+import ru.gorodovikov.MeasurementsApp.util.ErrorsUtil;
+import ru.gorodovikov.MeasurementsApp.util.SensorErrorResponse;
+import ru.gorodovikov.MeasurementsApp.util.SensorException;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,7 +43,6 @@ public class MeasurementsController {
                                                      BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             ErrorsUtil.returnErrorsToClient(bindingResult);
-
 
         measurementsService.addMeasurement(convertToMeasurement(measurementDTO));
         return ResponseEntity.ok(HttpStatus.OK);

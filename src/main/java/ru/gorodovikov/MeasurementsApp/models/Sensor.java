@@ -1,4 +1,4 @@
-package ru.alishev.springcourse.FirstRestApp.models;
+package ru.gorodovikov.MeasurementsApp.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -16,10 +16,16 @@ public class Sensor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "Эй, пустое не вводи, падла (model)")
-    @Size(min = 3, max = 10, message = "Слышь вводи не меньше 3 и не больше 10, а то уебу (model)")
+    @NotEmpty(message = "Value should not be empty")
+    @Size(min = 3, max = 10, message = "Value should be from 3 to 10 symbols")
     @Column(name = "name")
     private String name;
+
+    public Sensor() {}
+
+    public Sensor(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;

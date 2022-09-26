@@ -1,9 +1,8 @@
-package ru.alishev.springcourse.FirstRestApp.models;
+package ru.gorodovikov.MeasurementsApp.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -12,17 +11,16 @@ public class Measurement {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
 
     @Column(name = "value")
-    @Min(value = -100, message = "Введите значение > -101")
-    @Max(value = 100, message = "Введите значение < 101")
-    @NotNull(message = "Значение отсутствует")
+    @Min(value = -100, message = "Input value > -101")
+    @Max(value = 100, message = "Input value < 101")
+    @NotNull(message = "Value should not be empty")
     private Float value;
 
     @Column(name = "raining")
-    @NotNull(message = "Значение отсутствует")
+    @NotNull(message = "Value should not be empty")
     private Boolean raining;
 
     @ManyToOne

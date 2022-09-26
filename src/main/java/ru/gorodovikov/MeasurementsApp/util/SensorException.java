@@ -1,4 +1,4 @@
-package ru.alishev.springcourse.FirstRestApp.util;
+package ru.gorodovikov.MeasurementsApp.util;
 
 public class SensorException extends RuntimeException{
     public SensorException(String msg) {

@@ -1,22 +1,16 @@
-package ru.alishev.springcourse.FirstRestApp.dto;
+package ru.gorodovikov.MeasurementsApp.dto;
 
-import ru.alishev.springcourse.FirstRestApp.models.Sensor;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class MeasurementDTO {
-    @Min(value = -100, message = "Введите значение > -101")
-    @Max(value = 100, message = "Введите значение < 101")
-    @NotNull(message = "Значение отсутствует")
+    @Min(value = -100, message = "Input value > -101")
+    @Max(value = 100, message = "Input value < 101")
+    @NotNull(message = "Value should not be empty")
     private Float value;
 
-    @NotNull(message = "Значение отсутствует")
+    @NotNull(message = "Value should not be empty")
     private Boolean raining;
 
     private SensorDTO sensor;

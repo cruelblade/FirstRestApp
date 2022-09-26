@@ -1,20 +1,19 @@
-package ru.alishev.springcourse.FirstRestApp.controllers;
+package ru.gorodovikov.MeasurementsApp.controllers;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.alishev.springcourse.FirstRestApp.dto.MeasurementDTO;
-import ru.alishev.springcourse.FirstRestApp.dto.SensorDTO;
-import ru.alishev.springcourse.FirstRestApp.models.Measurement;
-import ru.alishev.springcourse.FirstRestApp.models.Sensor;
-import ru.alishev.springcourse.FirstRestApp.services.MeasurementsService;
-import ru.alishev.springcourse.FirstRestApp.services.SensorsService;
-import ru.alishev.springcourse.FirstRestApp.util.*;
+import ru.gorodovikov.MeasurementsApp.dto.SensorDTO;
+import ru.gorodovikov.MeasurementsApp.models.Sensor;
+import ru.gorodovikov.MeasurementsApp.services.MeasurementsService;
+import ru.gorodovikov.MeasurementsApp.services.SensorsService;
+import ru.gorodovikov.MeasurementsApp.util.*;
+import ru.gorodovikov.MeasurementsApp.util.ErrorsUtil;
+import ru.gorodovikov.MeasurementsApp.util.SensorErrorResponse;
+import ru.gorodovikov.MeasurementsApp.util.SensorException;
+import ru.gorodovikov.MeasurementsApp.util.SensorValidator;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,13 +24,13 @@ import java.util.stream.Collectors;
 public class SensorsController {
 
     private final SensorsService sensorsService;
-    private final MeasurementsService measurementsService;
     private final ModelMapper modelMapper;
+    private final SensorValidator sensorValidator;
 
-    public SensorsController(SensorsService sensorsService, MeasurementsService measurementsService, ModelMapper modelMapper) {
+    public SensorsController(SensorsService sensorsService, MeasurementsService measurementsService, ModelMapper modelMapper, SensorValidator sensorValidator) {
         this.sensorsService = sensorsService;
-        this.measurementsService = measurementsService;
         this.modelMapper = modelMapper;
+        this.sensorValidator = sensorValidator;
     }
 
     @GetMapping("/get_sensors")
@@ -41,10 +40,15 @@ public class SensorsController {
 
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> addSensor(@Valid @RequestBody SensorDTO sensorDTO, BindingResult bindingResult) {
+
+        Sensor sensorToAdd = convertToSensor(sensorDTO);
+
+        sensorValidator.validate(sensorToAdd, bindingResult);
+
         if (bindingResult.hasErrors())
             ErrorsUtil.returnErrorsToClient(bindingResult);
 
-        sensorsService.save(convertToSensor(sensorDTO));
+        sensorsService.save(sensorToAdd);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

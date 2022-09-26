@@ -1,4 +1,4 @@
-package ru.alishev.springcourse.FirstRestApp.dto;
+package ru.gorodovikov.MeasurementsApp.dto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.alishev.springcourse.FirstRestApp.util;
+package ru.gorodovikov.MeasurementsApp.util;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -11,12 +11,11 @@ public class ErrorsUtil {
 
         List<FieldError> errors = bindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            errorMsg.append("Херня с полем ")
+            errorMsg.append("Field \'")
                     .append(error.getField())
-                    .append(" - ").append(error.getDefaultMessage())
+                    .append("\' - ").append(error.getDefaultMessage())
                     .append(";");
         }
         throw new SensorException(errorMsg.toString());
-
     }
 }
