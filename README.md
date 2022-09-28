@@ -1,6 +1,6 @@
 # MeasurementsApp
 This project with rest architecture, which takes data from weather sensors.
-It cat take requests:
+It can take requests:
 
 create new sensor
 POST ../sensors/registration
