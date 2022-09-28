@@ -33,7 +33,7 @@ public class SensorsController {
         this.sensorValidator = sensorValidator;
     }
 
-    @GetMapping("/get_sensors")
+    @GetMapping()
     public List<SensorDTO> getSensors() {
         return sensorsService.findAll().stream().map(this::convertToSensorDTO).collect(Collectors.toList());
     }
