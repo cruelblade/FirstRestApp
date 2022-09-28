@@ -1,6 +1,7 @@
 package ru.gorodovikov.MeasurementsApp;
 
 import io.restassured.response.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import static org.mockito.Mockito.*;
 import static ru.gorodovikov.MeasurementsApp.util.TestUtils.*;
 import static ru.gorodovikov.MeasurementsApp.util.TestValues.*;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MeasurementsAppApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode=DirtiesContext.ClassMode.AFTER_CLASS)
@@ -83,7 +85,7 @@ class MeasurementsAppApplicationTests {
 		Response response = measurementPostRequest(measurementJson(validMeasurement));
 		assertEquals(HttpStatus.OK.value(), response.statusCode());
 
-		// Для ассерта необходимо получить id measurements при пост запросе
+		// TODO - для ассерта необходимо получить id measurements при пост запросе
 		// Assertions.assertNotNull(measurementsService.findOne());
 	}
 
@@ -119,14 +121,5 @@ class MeasurementsAppApplicationTests {
 		Response response = measurementPostRequest(measurementJson(measurementWithNotExistedSensor));
 		assertEquals(HttpStatus.BAD_REQUEST.value(), response.statusCode());
 	}
-
-	@Test
-	void mockTest() {
-		Sensor newSensor = Mockito.mock(Sensor.class);
-//		newSensor.setName("Сенсор");
-		when(newSensor.getName()).thenReturn("Сенсор");
-		assertEquals("Сенсор", newSensor.getName());
-	}
-
 
 }
