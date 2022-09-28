@@ -3,16 +3,16 @@ This project with rest architecture, which takes data from weather sensors.
 It cat take requests:
 
 create new sensor
-POST http://localhost:8080/sensors/registration
+POST ../sensors/registration
 
 get all sensors
-GET http://localhost:8080/sensors/
+GET ../sensors/
 
 create new measurement
-POST http://localhost:8080/measurements/add
+POST ../measurements/add
 
 get all measurements
-GET http://localhost:8080/measurements/
+GET ../measurements/
 
 get rainy days count from all measurements
-GET http://localhost:8080/rainy_days_count/
+GET ../rainy_days_count/
